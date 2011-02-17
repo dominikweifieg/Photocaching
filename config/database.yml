@@ -26,5 +26,5 @@ production:
   pool: 5
   username: photocaching
   password: tract255;soiree
-  socket: /opt/bitnami/mysql/tmp/mysql.socket
+  socket: /opt/bitnami/mysql/tmp/mysql.sock
   timeout: 5000
