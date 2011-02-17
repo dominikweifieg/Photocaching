@@ -16,9 +16,9 @@ set :deploy_via, :remote_cache
 
 set :main_server, "ec2-46-137-9-5.eu-west-1.compute.amazonaws.com"
 
-role :web, "your web-server here"                          # Your HTTP server, Apache/etc
-role :app, "your app-server here"                          # This may be the same as your `Web` server
-role :db,  "your primary db-server here", :primary => true # This is where Rails migrations will run
+role :web, main_server                          # Your HTTP server, Apache/etc
+role :app, main_server                          # This may be the same as your `Web` server
+role :db,  main_server, :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # If you are using Passenger mod_rails uncomment this:
