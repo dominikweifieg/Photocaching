@@ -4,15 +4,14 @@ set :repository,  "git@github.com:dominikweifieg/Photocaching.git"
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
-set :use_sudo, true
-
-set :deploy_to, "ls /opt/bitnami/apps/#{application}"
+set :use_sudo, false
+set :deploy_to, "/opt/bitnami/apps/#{application}"
 
 set :user, "bitnami"
 
 ssh_options[:forward_agent] = true
 set :branch, "master"
-set :deploy_via, :remote_cache
+#set :deploy_via, :remote_cache
 
 set :main_server, "ec2-46-137-9-5.eu-west-1.compute.amazonaws.com"
 
