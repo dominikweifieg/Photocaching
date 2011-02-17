@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Alias:</b>
+  <%= @user.alias %>
+</p>
+
+<p>
+  <b>Identifier:</b>
+  <%= @user.identifier %>
+</p>
+
+<p>
+  <b>Device:</b>
+  <%= @user.device %>
+</p>
+
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

@@ -1,0 +1,33 @@
+<photo id="5415398234" owner="94852245@N00" secret="ba02247011" server="4105" farm="5" title="the smithsons, alison and peter smithson, ansty plum ramp, 1987" ispublic="1" isfriend="0" isfamily="0" license="4" latitude="51.037056" longitude="-2.062758" accuracy="16" place_id="RsG8hDyYAZRToQ" woeid="10848" geo_is_family="0" geo_is_friend="0" geo_is_contact="0" geo_is_public="1" url_l="http://farm5.static.flickr.com/4105/5415398234_ba02247011_b.jpg" height_l="1024" width_l="1024" url_sq="http://farm5.static.flickr.com/4105/5415398234_ba02247011_s.jpg" height_sq="75" width_sq="75" />
+
+
+<photo .*? owner="(.*?)" .*? title="(.*?)" .*? license="(\d)" latitude="(.*?)" longitude="(.*?)" .*? url_l="(.*?)" .*? url_sq="(.*?)" .*/>
+
+("http://www.flickr.com/photos/$1 lic_$3", $4, $5, "$6", "$7", "$2", 1, NOW(), NOW()),
+
+
+
+
+<license id="4" name="Attribution License"
+		url="http://creativecommons.org/licenses/by/2.0/" /> 
+	<license id="6" name="Attribution-NoDerivs License"
+		url="http://creativecommons.org/licenses/by-nd/2.0/" /> 
+	<license id="3" name="Attribution-NonCommercial-NoDerivs License"
+		url="http://creativecommons.org/licenses/by-nc-nd/2.0/" /> 
+	<license id="2" name="Attribution-NonCommercial License"
+		url="http://creativecommons.org/licenses/by-nc/2.0/" /> 
+	<license id="1" name="Attribution-NonCommercial-ShareAlike License"
+		url="http://creativecommons.org/licenses/by-nc-sa/2.0/" /> 
+	<license id="5" name="Attribution-ShareAlike License"
+		url="http://creativecommons.org/licenses/by-sa/2.0/" /> 
+	<license id="7" name="No known copyright restrictions"
+		url="http://flickr.com/commons/usage/" />
+		
+
+
+
+http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4983eabd3090503248cf30cdc974d63c&tags=architecture&tag_mode=all&license=4%2C5%2C6%2C7&has_geo=1&extras=license%2C+geo%2C+url_l%2C+url_sq&per_page=500
+
+
+
+insert into users (alias, identifier, device, created_at, updated_at) values ("ROOT", "dominikweifieg_root", "iphone", NOW(), NOW());

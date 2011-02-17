@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  alias: MyString
+  identifier: MyString
+  device: MyString
+
+two:
+  alias: MyString
+  identifier: MyString
+  device: MyString

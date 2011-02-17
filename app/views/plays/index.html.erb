@@ -1,0 +1,33 @@
+<h1>Listing plays</h1>
+
+<table>
+  <tr>
+    <th>User</th>
+    <th>Photo</th>
+    <th>Radius</th>
+    <th>Lat</th>
+    <th>Lng</th>
+    <th>End time</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @plays.each do |play| %>
+  <tr>
+    <td><%= play.user_id %></td>
+    <td><%= play.photo_id %></td>
+    <td><%= play.radius %></td>
+    <td><%= play.lat %></td>
+    <td><%= play.lng %></td>
+    <td><%= play.end_time %></td>
+    <td><%= link_to 'Show', play %></td>
+    <td><%= link_to 'Edit', edit_play_path(play) %></td>
+    <td><%= link_to 'Destroy', play, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Play', new_play_path %>
