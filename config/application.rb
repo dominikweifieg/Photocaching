@@ -38,5 +38,7 @@ module Photocaching
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+    
+    config.secret = "5916476be7121bb783700e5e9110c108d0832f88ed69f6a4fb85157f8c6d2622c88cd46c951fe6ca9542c1243687a0582f8a144ece0290fb3121a5ff2ae39d0c"
   end
 end

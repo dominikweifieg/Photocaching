@@ -3,15 +3,17 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
+    limit = params[:limit].to_i if params[:limit].present?
+    limt ||= 50
     if(params[:nelat].present?)
       @sw = GeoKit::LatLng.new(params[:swlat].to_f,params[:swlng].to_f)
       @ne = GeoKit::LatLng.new(params[:nelat].to_f,params[:nelng].to_f)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       #@photos = Photo.in_bounds(:bounds => [@sw, @ne], :origin => @origin)
-      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc").limit(params[:limit].to_i)
+      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc").limit(limit)
     elsif(params[:within].present?)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
-      @photos = Photo.geo_scope(:withing=> params[:within].to_f, :origin => @origin).order("distance asc").limit(params[:limit].to_i)
+      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc").limit(limit)
     else
       @photos = Photo.all
     end
@@ -57,7 +59,8 @@ class PhotosController < ApplicationController
   # POST /photos
   # POST /photos.xml
   def create
-    user = User.find_by_identifier(params[:user][:identifier])
+    user = User.find_by_identifier(params[:user][:identifier]) if params[:user].present?
+    user ||= User.find_by_identifier("ANONYMOUS@photocaching")
     
     @photo = Photo.new(params[:photo])
     @photo.user = user;

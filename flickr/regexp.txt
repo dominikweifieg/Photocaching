@@ -29,5 +29,12 @@
 http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=4983eabd3090503248cf30cdc974d63c&tags=architecture&tag_mode=all&license=4%2C5%2C6%2C7&has_geo=1&extras=license%2C+geo%2C+url_l%2C+url_sq&per_page=500
 
 
+http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=1326e3f0235c87c23064d0deed42c3d9&tags=architecture&tag_mode=all&license=4%2C5%2C6%2C7&has_geo=1&extras=license%2C+geo%2C+url_l%2C+url_sq&per_page=500&auth_token=72157625954088421-df531e175f152cac&api_sig=78e38164e4b90ed8839b113ae883da36
 
 insert into users (alias, identifier, device, created_at, updated_at) values ("ROOT", "dominikweifieg_root", "iphone", NOW(), NOW());
+
+
+cat combined.xml | sed 's/\<photo .*? owner="\(.*?\)" .*? title="\(.*?\)" .*? license="\(\d\)" latitude="\(.*?\)" longitude="\(.*?\)" .*? url_l="\(.*?\)" .*? url_sq="\(.*?\)" .*\/\>/("http://www.flickr.com/photos/\1 lic_\3", \4, \5, "\6", "\7", "\2", 1, NOW(), NOW()),/g' > combined1.xml
+
+
+cat combined.xml | sed 's/\<photo .*? owner="\(.*?\)" .*? title="\(.*?\)" .*? license="\(\d\)" latitude="\(.*?\)" longitude="\(.*?\)" .*? url_l="\(.*?\)" .*? url_sq="\(.*?\)" .*\/\>/owner/g' > combined1.xml
