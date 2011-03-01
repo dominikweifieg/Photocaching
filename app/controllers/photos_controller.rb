@@ -82,10 +82,7 @@ class PhotosController < ApplicationController
         
         format.html { redirect_to(@photo, :notice => 'Photo was successfully created.') }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
-        format.json  do 
-          logger.info(@photo.to_json)
-          render :json => @photo, :status => :created, :location => @photo 
-        end
+        format.json  { redirect_to(@photo)}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
