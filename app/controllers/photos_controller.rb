@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
   protect_from_forgery :except => :create
+  before_filter :authenticate, :except => [:index, :show]
+  
   # GET /photos
   # GET /photos.xml
   def index
@@ -76,9 +78,14 @@ class PhotosController < ApplicationController
         @photo.thumb = "http://s3-eu-west-1.amazonaws.com/#{bucket}/#{path}_thumb.jpg" 
         @photo.save
         
+        logger.info("Created urls")
+        
         format.html { redirect_to(@photo, :notice => 'Photo was successfully created.') }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
-        format.json  { render :json => @photo, :status => :created, :location => @photo }
+        format.json  do 
+          logger.info(@photo.to_json)
+          render :json => @photo, :status => :created, :location => @photo 
+        end
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }

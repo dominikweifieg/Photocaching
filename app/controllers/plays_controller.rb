@@ -1,5 +1,6 @@
 class PlaysController < ApplicationController
       protect_from_forgery :except => :create
+      before_filter :authenticate, :except => [:index, :show]
   # GET /plays
   # GET /plays.xml
   def index
