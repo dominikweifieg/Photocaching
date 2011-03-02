@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc created_at desc").limit(limit)
     else
-      @photos = Photo.all.order("created_at desc").limit(10)
+      @photos = Photo.order("created_at desc").limit(10)
     end
 
     logger.info("Found #{@photos.size} photos.")
@@ -76,16 +76,16 @@ class PhotosController < ApplicationController
         bucket = "photocaching.test" 
         server = "s3"
         
-        if(-180.0...-100.0.include? @photo.lat)
+        if(-180.0...-100.0.include?(@photo.lat))
           bucket = "photocaching.us.west"
           server = "s3-us-west-1"
-        elsif(-100.0...-30.0.include? @photo.lat)
+        elsif(-100.0...-30.0.include?(@photo.lat))
           bucket = "photocaching.us.east"
           server = "s3"
-        elsif(-30.0...60.0.include? @photo.lat)
+        elsif(-30.0...60.0.include?(@photo.lat))
           bucket = "photocaching.eu"
           server = "s3-eu-west-1"
-        elsif(60.0..180.0.include? @photo.lat)
+        elsif(60.0..180.0.include?(@photo.lat))
           bucket = "photocaching.asia"
           server = "s3-ap-southeast-1"
         end
