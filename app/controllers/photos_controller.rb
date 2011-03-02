@@ -76,22 +76,29 @@ class PhotosController < ApplicationController
         bucket = "photocaching.test" 
         server = "s3"
         
+        logger.info(@photo.lat)
+        
         if(-180.0...-100.0.include?(@photo.lat))
+          logger.info("us west")
           bucket = "photocaching.us.west"
           server = "s3-us-west-1"
         elsif(-100.0...-30.0.include?(@photo.lat))
+          logger.info("us east")
           bucket = "photocaching.us.east"
           server = "s3"
         elsif(-30.0...60.0.include?(@photo.lat))
+          logger.info("eu")
           bucket = "photocaching.eu"
           server = "s3-eu-west-1"
         elsif(60.0..180.0.include?(@photo.lat))
+          logger.info("asia")
           bucket = "photocaching.asia"
           server = "s3-ap-southeast-1"
         end
         
         @photo.url = "http://#{server}.amazonaws.com/#{bucket}/#{path}.jpg"
         @photo.thumb = "http://#{server}.amazonaws.com/#{bucket}/#{path}_thumb.jpg" 
+        logger.info(@photo.url)
         @photo.save
         
         logger.info("Created urls")
