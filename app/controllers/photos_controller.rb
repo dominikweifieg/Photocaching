@@ -142,10 +142,14 @@ class PhotosController < ApplicationController
       logger.info("eu")
       bucket = "photocaching.eu"
       server = "s3-eu-west-1"
-    elsif(lat >= 60.0 && lat <= 180.0)
-      logger.info("asia")
+    elsif(lat >= 60.0 && lat < 120.0)
+      logger.info("asia west")
       bucket = "photocaching.asia"
       server = "s3-ap-southeast-1"
+    elsif(lat >= 120.0 && lat <= 180.0)
+      logger.info("asia east")
+      bucket = "photocaching.asia.east"
+      server = "s3-ap-northeast-1"
     end
     
     return "http://#{server}.amazonaws.com/#{bucket}"
