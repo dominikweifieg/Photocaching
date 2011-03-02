@@ -46,4 +46,10 @@ class PhotosControllerTest < ActionController::TestCase
 
     assert_redirected_to photos_path
   end
+  
+  test "should be in eu location" do
+    photo = photos(:three)
+    post :create, :photo => photo.attributes
+    assert_same(assigns(:photo).url, "foo")
+  end
 end

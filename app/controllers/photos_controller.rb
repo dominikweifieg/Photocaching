@@ -72,32 +72,11 @@ class PhotosController < ApplicationController
         id = @photo.id
         
         path = "%08d" % id
+       
+        location = location_for_latitude(@photo.lat)
         
-        bucket = "photocaching.test" 
-        server = "s3"
-        
-        logger.info(@photo.lat)
-        
-        if(-180.0...-100.0.include?(@photo.lat))
-          logger.info("us west")
-          bucket = "photocaching.us.west"
-          server = "s3-us-west-1"
-        elsif(-100.0...-30.0.include?(@photo.lat))
-          logger.info("us east")
-          bucket = "photocaching.us.east"
-          server = "s3"
-        elsif(-30.0...60.0.include?(@photo.lat))
-          logger.info("eu")
-          bucket = "photocaching.eu"
-          server = "s3-eu-west-1"
-        elsif(60.0..180.0.include?(@photo.lat))
-          logger.info("asia")
-          bucket = "photocaching.asia"
-          server = "s3-ap-southeast-1"
-        end
-        
-        @photo.url = "http://#{server}.amazonaws.com/#{bucket}/#{path}.jpg"
-        @photo.thumb = "http://#{server}.amazonaws.com/#{bucket}/#{path}_thumb.jpg" 
+        @photo.url = "#{location}/#{path}.jpg"
+        @photo.thumb = "#{location}/#{path}_thumb.jpg" 
         logger.info(@photo.url)
         @photo.save
         
@@ -143,5 +122,32 @@ class PhotosController < ApplicationController
       format.xml  { head :ok }
       format.json  { head :ok }
     end
+  end 
+  
+  def location_for_latitude(lat)
+    bucket = "photocaching.test" 
+    server = "s3"
+    
+    logger.info(lat)
+    
+    if(lat >= -180.0 && lat < -100.0)
+      logger.info("us west")
+      bucket = "photocaching.us.west"
+      server = "s3-us-west-1"
+    elsif(lat >= -100.0 && lat < -30.0)
+      logger.info("us east")
+      bucket = "photocaching.us.east"
+      server = "s3"
+    elsif(lat >= -30.0 && lat < 60.0)
+      logger.info("eu")
+      bucket = "photocaching.eu"
+      server = "s3-eu-west-1"
+    elsif(lat >= 60.0 && lat <= 180.0)
+      logger.info("asia")
+      bucket = "photocaching.asia"
+      server = "s3-ap-southeast-1"
+    end
+    
+    return "http://#{server}.amazonaws.com/#{bucket}"
   end
 end

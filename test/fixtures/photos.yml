@@ -11,3 +11,28 @@ two:
   url: MyString
   lat: 1.5
   lng: 1.5
+
+three:
+  user_id: 1
+  title: three
+  lat: -150.64245656
+  lng: 25.04
+  
+four:
+  user_id: 1
+  title: four
+  lat: -85.235475
+  lng: 25.04
+
+five:
+  user_id: 1
+  title: five
+  lat: 11.3495879
+  lng: 25.04
+
+six:
+  user_id: 1
+  title: six
+  lat: 84.3454572
+  lng: 25.04
+
