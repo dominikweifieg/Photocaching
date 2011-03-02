@@ -12,12 +12,12 @@ class PhotosController < ApplicationController
       @ne = GeoKit::LatLng.new(params[:nelat].to_f,params[:nelng].to_f)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       #@photos = Photo.in_bounds(:bounds => [@sw, @ne], :origin => @origin)
-      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc").limit(limit)
+      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc created_at desc":).limit(limit)
     elsif(params[:within].present?)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
-      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc").limit(limit)
+      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc created_at desc").limit(limit)
     else
-      @photos = Photo.all
+      @photos = Photo.all.order("created_at desc").limit(10)
     end
 
     logger.info("Found #{@photos.size} photos.")
@@ -71,11 +71,27 @@ class PhotosController < ApplicationController
       if @photo.save
         id = @photo.id
         
-        bucket = "photocaching.test" 
         path = "%08d" % id
         
-        @photo.url = "http://s3-eu-west-1.amazonaws.com/#{bucket}/#{path}.jpg"
-        @photo.thumb = "http://s3-eu-west-1.amazonaws.com/#{bucket}/#{path}_thumb.jpg" 
+        bucket = "photocaching.test" 
+        server = "s3"
+        
+        if(-180.0...-100.0.include? @photo.lat)
+          bucket = "photocaching.us.west"
+          server = "s3-us-west-1"
+        elsif(-100.0...-30.0.include? @photo.lat)
+          bucket = "photocaching.us.east"
+          server = "s3"
+        elsif(-30.0...60.0.include? @photo.lat)
+          bucket = "photocaching.eu"
+          server = "s3-eu-west-1"
+        elsif(60.0..180.0.include? @photo.lat)
+          bucket = "photocaching.asia"
+          server = "s3-ap-southeast-1"
+        end
+        
+        @photo.url = "http://#{server}.amazonaws.com/#{bucket}/#{path}.jpg"
+        @photo.thumb = "http://#{server}.amazonaws.com/#{bucket}/#{path}_thumb.jpg" 
         @photo.save
         
         logger.info("Created urls")

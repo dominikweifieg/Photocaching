@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     protect_from_forgery :except => :create
-    before_filter :authenticate
+    before_filter :authenticate, :except => [:index, :show]
   # GET /users
   # GET /users.xml
   def index
