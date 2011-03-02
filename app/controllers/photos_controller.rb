@@ -12,10 +12,10 @@ class PhotosController < ApplicationController
       @ne = GeoKit::LatLng.new(params[:nelat].to_f,params[:nelng].to_f)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       #@photos = Photo.in_bounds(:bounds => [@sw, @ne], :origin => @origin)
-      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc created_at desc").limit(limit)
+      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc, created_at desc").limit(limit)
     elsif(params[:within].present?)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
-      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc created_at desc").limit(limit)
+      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc, created_at desc").limit(limit)
     else
       @photos = Photo.order("created_at desc").limit(10)
     end
