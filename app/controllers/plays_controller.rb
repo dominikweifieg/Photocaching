@@ -62,7 +62,7 @@ class PlaysController < ApplicationController
       if @play.save
         format.html { redirect_to(@play, :notice => 'Play was successfully created.') }
         format.xml  { render :xml => @play, :status => :created, :location => @play }
-        format.json  { render :json => @play, :status => :created, :location => @play }
+        format.json  { redirect_to(@play, :format => 'json')}
       else
         format.html { render :action => "new" }
         format.xml  { render :xml => @play.errors, :status => :unprocessable_entity }
