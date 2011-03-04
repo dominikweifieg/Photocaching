@@ -60,6 +60,19 @@ class PlaysController < ApplicationController
 
     respond_to do |format|
       if @play.save
+        
+        id = @play.id
+        
+        path = "play_%08d" % id
+       
+        location = location_for_latitude(@play.lat)
+        
+        @play.url = "#{location}/#{path}.jpg"
+        @play.thumb = "#{location}/#{path}_thumb.jpg" 
+        @play.save
+        
+        logger.info("Created urls")
+        
         format.html { redirect_to(@play, :notice => 'Play was successfully created.') }
         format.xml  { render :xml => @play, :status => :created, :location => @play }
         format.json  { redirect_to(@play, :format => 'json')}
