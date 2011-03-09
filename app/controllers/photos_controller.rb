@@ -25,7 +25,10 @@ class PhotosController < ApplicationController
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @photos }
-      format.json  { render :json => @photos }
+      format.json  { render :json => @photos, :include => {
+              :user => {
+                      :only => [:alias]
+              } } }
     end
   end
 
@@ -36,7 +39,10 @@ class PhotosController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json  { render :json => @photo }
+      format.json  { render :json => @photo, :include => {
+              :user => {
+                      :only => [:alias]
+              } } }
       format.xml  { render :xml => @photo }
     end
   end
