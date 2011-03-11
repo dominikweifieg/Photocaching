@@ -2,6 +2,8 @@
 
 <%= render :partial => @play, :locals => {:details_link => false} %>
 
+This might be the route <%= @play.user.alias %> took to find the photo:<br/><br/> 
+
 <%= map(@play, @play.photo)%>
 
 <div class="clear back">
