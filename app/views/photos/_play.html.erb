@@ -1,0 +1,3 @@
+<% if play.end_time %>
+<li><%= link_to play.user.alias, play %> took <%= distance_of_time_in_words(play.created_at, play.end_time) %> to find this photo.</li>
+<% end %>

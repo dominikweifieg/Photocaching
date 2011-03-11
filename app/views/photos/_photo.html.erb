@@ -1,0 +1,9 @@
+<% div_for photo do %>
+	<div class="photo_image">
+	<%= link_to image_tag(photo.thumb), photo %>
+	</div>
+	<div class="photo_details">
+	<h4><%= photo.title %></h4>
+	<div class="user_alias">Submitted by <%= link_to photo.user.alias, photo.user %> <%= distance_of_time_in_words_to_now photo.created_at %> ago.</div>
+	</div>
+<% end %>

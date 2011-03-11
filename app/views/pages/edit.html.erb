@@ -1,0 +1,12 @@
+<h2>Edit page</h2>
+
+<% form_for(@page) do |f| %>
+  <%= f.error_messages %>
+	<%= render :partial => 'editor' , :locals => { :f => f } %>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @page %> |
+<%= link_to 'Back', pages_path %>

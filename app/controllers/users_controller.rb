@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find_by_identifier(params[:id])
-
+    logger.info(@user)
     respond_to do |format|
       format.html # show.html.erb
       format.json  do 

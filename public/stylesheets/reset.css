@@ -1,0 +1,51 @@
+/*** Resets default browser CSS  ***/
+
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, p, blockquote, pre,
+a, abbr, acronym, address, code,
+del, dfn, img, q, dl, dt, dd, ol, ul, li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: inherit;
+  font-style: inherit;
+  font-size: 100%;
+  font-family: inherit;
+  vertical-align: baseline;
+}
+
+/* Remove possible quote marks (") from <q>, <blockquote>. */
+blockquote:before, blockquote:after, q:before, q:after { content: ""; }
+blockquote, q { quotes: "" ""; }
+a img { border: none; }
+
+body{font-size:62.5%;margin:0}
+a:link,a:visited{outline: none;}
+a:hover{text-decoration:underline;}
+
+/* slightly enhanced, universal clearfix hack */
+.clearfix:after {
+     visibility: hidden;
+     display: block;
+     font-size: 0;
+     content: " ";
+     clear: both;
+     height: 0;
+     }
+.clearfix { display: inline-block; }
+/* start commented backslash hack \*/
+* html .clearfix { height: 1%; }
+.clearfix { display: block; }
+/* close commented backslash hack */
+
+.hidden { display: none; }
+
+.clear-right {
+	 clear: right;
+}
+.clear {
+	clear: both;
+}
+.clear-left {
+	clear:  left;
+}

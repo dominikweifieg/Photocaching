@@ -4,7 +4,12 @@ Photocaching::Application.routes.draw do
   resources :plays
 
   resources :users
+  
+  resources :pages
+  
+  match 'static/:permalink' => 'pages#show'
 
+  root :to  => 'pages#show', :defaults => {:permalink => "home"}
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

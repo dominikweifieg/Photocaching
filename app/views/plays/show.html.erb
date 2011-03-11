@@ -1,35 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h2><%= @play.photo.title %> played by <%= @play.user.alias %></h2>
 
-<p>
-  <b>User:</b>
-  <%= @play.user_id %>
-</p>
+<%= render :partial => @play, :locals => {:details_link => false} %>
 
-<p>
-  <b>Photo:</b>
-  <%= @play.photo_id %>
-</p>
+<%= map(@play, @play.photo)%>
 
-<p>
-  <b>Radius:</b>
-  <%= @play.radius %>
-</p>
-
-<p>
-  <b>Lat:</b>
-  <%= @play.lat %>
-</p>
-
-<p>
-  <b>Lng:</b>
-  <%= @play.lng %>
-</p>
-
-<p>
-  <b>End time:</b>
-  <%= @play.end_time %>
-</p>
-
-
-<%= link_to 'Edit', edit_play_path(@play) %> |
+<div class="clear back">
 <%= link_to 'Back', plays_path %>
+</div>

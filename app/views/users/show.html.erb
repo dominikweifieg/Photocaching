@@ -1,20 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Alias:</b>
-  <%= @user.alias %>
-</p>
-
-<p>
-  <b>Identifier:</b>
-  <%= @user.identifier %>
-</p>
-
-<p>
-  <b>Device:</b>
-  <%= @user.device %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<h2><%= @user.alias %></h2>
+<%= @user.alias %> is using her/his <%= @user.device %> to play photocaching.
+<h3>The newest photos submitted by <%= @user.alias %></h3>
+<%= render :partial => "photos/photo", :collection => @user.photos%>

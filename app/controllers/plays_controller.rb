@@ -1,5 +1,5 @@
 class PlaysController < ApplicationController
-      protect_from_forgery :except => :create
+      protect_from_forgery :except => [:create, :update]
       before_filter :authenticate, :except => [:index, :show]
   # GET /plays
   # GET /plays.xml
@@ -9,7 +9,7 @@ class PlaysController < ApplicationController
       photo = Photo.find(params[:photo_id])
       @plays = user.plays.find(:all, :conditions => {:photo_id => photo, :end_time => nil})
     else
-      @plays = Play.all
+      @plays = Play.includes([:user, :photo]).where("end_time IS NOT NULL").order("end_time DESC").limit(10);
     end
 
     respond_to do |format|

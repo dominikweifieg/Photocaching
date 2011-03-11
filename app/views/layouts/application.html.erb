@@ -1,14 +1,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Photocaching</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
+	<title>Photocaching</title>
+	<%= stylesheet_link_tag "reset", "custom", "lightbox", "photocaching", :cache => "main" %>
+	<%= javascript_include_tag :defaults %>
+	<%= javascript_include_tag "lightbox" %>
+	<%= javascript_include_tag "builder" %>
+	<%= csrf_meta_tag %>
 </head>
 <body>
 
-<%= yield %>
-
-</body>
-</html>
+	<div id="wrap">
+		<div id="header_wrap">
+			<a href="http://www.iphotocache.com"><div id="header">
+				<h1 id="iphotocache">iPhotoCache.com</h1>
+				<h2 id="something">Something new to discover ... everyday!</h2>
+			</div></a>
+		</div>
+		<div id="container">
+			<div id="content">
+				<div id="content_column">
+				<%= yield %>
+			</div>
+			<div id="sidebar_wrap">
+				<div id="sidebar_1">
+						<ul class="xoxo">
+							<li id="pages-3" class="widget widget_pages"><h3> </h3>		
+								<ul>
+									<li class="page_item"><a href="/" title="Start Here">Start Here</a></li>
+									<li class="page_item"><%= link_to "Photos", photos_path%></li>
+									<li class="page_item"><%= link_to "Plays", plays_path %></li>
+								</ul>
+							</li>
+							<li class="widget widget_text">			
+								<div class="textwidget"><p style="margin:35px -5px 0px 0px; font-weight:normal; font-size:12px; line-height:18px">
+								<strong><a href="http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="/images/iphone.png">
+									<br/>Get the Photocaching app for iPhone and iPad</a></strong></p></div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="footer_wrap">
+					<div id="footer">
+						<p>&copy; 2011 <%= link_to "Ars Subtilior", "http://www.ars-subtilior.com"%>, Dominik Wei-Fieg</p>
+						<p><%= link_to "Contact", "/static/contact" %></p>
+					</div>
+				</div>
+				<div style="clear:both;"></div>
+			</div>
+		</body>
+		</html>
