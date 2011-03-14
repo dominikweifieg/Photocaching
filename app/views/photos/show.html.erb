@@ -7,7 +7,7 @@
 <div class="show_details">
 	Submitted by <%= link_to @photo.user.alias, @photo.user %>  <%= distance_of_time_in_words_to_now @photo.created_at %> ago.<br /><br />
 
-	<%= number_to_human @photo.plays.count %> users have looked for the location of this photo. <br/><br/>
+	<%= number_to_human @photo.plays.count %> <%= pluralize @photo.plays.count, "user has", "users have" %> looked for the location of this photo. <br/><br/>
 	Can you find the location of this photo? Get the <%= link_to "Photocaching App", "http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1" %> and start out.
 	
 
