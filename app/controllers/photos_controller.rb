@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
       format.xml  { render :xml => @photos }
       format.json  { render :json => @photos, :include => {
               :user => {
-                      :only => [:alias]
+                      :only => [:alias, :identifier]
               } } }
     end
   end
