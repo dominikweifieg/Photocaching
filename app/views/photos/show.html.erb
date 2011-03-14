@@ -16,12 +16,13 @@
 	</ul>
 </div>
 
+<% if session["layout"] != "mobile" %>
 <div class="clear map">
 	This photo has been taken somewhere around here:<br/><br/>
 	
 	<%= map_photo @photo %>
 </div>
-	
+<% end %>
 
 <div class="clear back">
 <%= link_to 'Back', photos_path %>
