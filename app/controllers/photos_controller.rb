@@ -20,12 +20,6 @@ class PhotosController < ApplicationController
       @photos = Photo.includes(:user).order("created_at desc").limit(20)
     end
 
-    @photos.each do |photo|
-      logger.info photo.id
-      logger.info photo.user
-      logger.info photo.user.alias if photo.user
-    end
-
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @photos }
