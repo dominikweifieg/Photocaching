@@ -17,7 +17,7 @@ class PhotosController < ApplicationController
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc, created_at desc").limit(limit)
     else
-      @photos = Photo.includes(:user).order("created_at desc").limit(10)
+      @photos = Photo.includes(:user).order("created_at desc").limit(20)
     end
 
     @photos.each do |photo|

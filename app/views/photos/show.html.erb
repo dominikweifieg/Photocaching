@@ -7,7 +7,8 @@
 <div class="show_details">
 	Submitted by <%= link_to @photo.user.alias, @photo.user %>  <%= distance_of_time_in_words_to_now @photo.created_at %> ago.<br /><br />
 
-	<%= number_to_human @photo.plays.count %> users have looked for the location of this photo. Can you find the location of this photo? Get the <%= link_to "Photocaching App", "http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1" %> and start out.
+	<%= number_to_human @photo.plays.count %> users have looked for the location of this photo. <br/><br/>
+	Can you find the location of this photo? Get the <%= link_to "Photocaching App", "http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1" %> and start out.
 	
 
 	<ul class="plays">
@@ -15,7 +16,7 @@
 	</ul>
 </div>
 
-<div class="clear">
+<div class="clear map">
 	This photo has been taken somewhere around here:<br/><br/>
 	
 	<%= map_photo @photo %>
