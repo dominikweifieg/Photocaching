@@ -32,6 +32,8 @@ div.photo {
 
 div.photo_image {
 	height: 190px;
+	width: 160px;
+	float: left;
 }
 
 div.photo_details {
@@ -44,6 +46,7 @@ div.show_details {
 
 div.back {
 	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 div.play {
