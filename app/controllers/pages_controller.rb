@@ -1,6 +1,8 @@
 class PagesController < ApplicationController
  before_filter :authenticate, :except => :show
-	
+ 
+ caches_page :show	
+
 	# GET /pages
   # GET /pages.xml
   def index
@@ -64,7 +66,7 @@ class PagesController < ApplicationController
   # PUT /pages/1.xml
   def update
     @page = Page.find(params[:id])
-
+    expire_page :action => :show
     respond_to do |format|
       if @page.update_attributes(params[:page])
         flash[:notice] = 'Page was successfully updated.'

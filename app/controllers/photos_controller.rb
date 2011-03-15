@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   protect_from_forgery :except => :create
   before_filter :authenticate, :except => [:index, :show]
+  caches_page :index
   
   # GET /photos
   # GET /photos.xml
@@ -73,6 +74,8 @@ class PhotosController < ApplicationController
     
     respond_to do |format|
       if @photo.save
+        expire_page :action => :index
+        
         id = @photo.id
         
         path = "%08d" % id

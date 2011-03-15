@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
       else
         user = User.find_by_alias(user_name)
         pwd = user.identifier.hash.to_s(36)
-        logger.info("#{user_name} => #{pwd}")
         pwd
       end
     end
