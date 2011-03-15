@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   protect_from_forgery :except => :create
   before_filter :authenticate, :except => [:index, :show]
-  caches_page :index
+  caches_page :index,  :if => Proc.new { |c| c.request.format.html? }
   
   # GET /photos
   # GET /photos.xml
