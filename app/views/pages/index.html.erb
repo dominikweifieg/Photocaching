@@ -8,9 +8,9 @@
 
 <% for page in @pages %>
   <tr>
-    <td><%=h page.title %></td>
-    <td><%=h page.permalink %></td>
-    <td><%=h(safe_truncate(page.body, 60)) %></td>
+    <td><%=page.title %></td>
+    <td><%=page.permalink %></td>
+    <td><%=truncate(page.body, 60) %></td>
     <td><%= link_to 'Show', page %></td>
     <td><%= link_to 'Edit', edit_page_path(page) %></td>
 		<td><%= link_to 'Destroy', page, :confirm => 'Are you sure?', :method => :delete %></td>
