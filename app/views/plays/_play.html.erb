@@ -1,4 +1,4 @@
-<% div_for play, :class => "list" do %>
+<%= div_for play, :class => "list" do %>
 	<div class="play_photos">
 	<div class="play_original_photo">
 		<%= link_to image_tag(play.photo.thumb, :alt => play.photo.title), play.photo.url, :rel => 'lightbox', :class => 'plain', :title => "#{play.photo.title}: Original" %>
