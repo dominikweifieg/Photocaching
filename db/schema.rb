@@ -10,7 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110310105627) do
+ActiveRecord::Schema.define(:version => 20110321082401) do
+
+  create_table "flags", :force => true do |t|
+    t.integer  "reason"
+    t.integer  "photo_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "pages", :force => true do |t|
     t.string   "title"
@@ -32,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20110310105627) do
     t.integer  "inappropriate_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "flags_count"
   end
 
   create_table "plays", :force => true do |t|
@@ -44,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20110310105627) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "thumb"
+    t.text     "url"
   end
 
   create_table "users", :force => true do |t|
@@ -52,6 +61,13 @@ ActiveRecord::Schema.define(:version => 20110310105627) do
     t.string   "device"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.datetime "subscription_expires"
+    t.string   "original_transaction_id"
+    t.datetime "original_purchase_date"
+    t.datetime "purchase_date"
+    t.boolean  "subscription"
+    t.text     "latest_receipt"
+    t.string   "product_id"
   end
 
 end

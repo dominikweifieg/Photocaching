@@ -17,7 +17,7 @@ class UsersController < ApplicationController
   # GET /users/1.xml
   def show
     @user = User.find_by_identifier(params[:id])
-    logger.info(@user)
+    
     respond_to do |format|
       format.html # show.html.erb
       format.json  do 
@@ -51,6 +51,8 @@ class UsersController < ApplicationController
   # POST /users.xml
   def create
     @user = User.new(params[:user])
+    
+    @user.subscription_expires = 1.month.from_now
 
     respond_to do |format|
       if @user.save

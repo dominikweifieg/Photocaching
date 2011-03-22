@@ -22,6 +22,15 @@
 	
 	<%= map_photo @photo %>
 </div>
+
+<div class="clear" id="report_photo">
+	Mark this photo as inapproriate.
+	<%= form_tag(flags_path, :method => "post", :remote => true)  do %>
+	  <%= hidden_field_tag 'flag[photo_id]', @photo.id %>
+		<%= select_tag("flag[reason]", options_for_select([['Non-existant', 0], ["Non-accessible", 1], ["Person", 2], ["Profanity", 3], ["Nudity", 4]])) %>
+		<%= submit_tag "Report!" %>
+	<% end %>
+</div>
 <% end %>
 
 <div class="clear back">

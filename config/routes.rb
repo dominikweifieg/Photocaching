@@ -1,4 +1,8 @@
 Photocaching::Application.routes.draw do
+  resources :flags
+
+  get "subscription/update"
+
   resources :photos
 
   resources :plays
@@ -6,6 +10,8 @@ Photocaching::Application.routes.draw do
   resources :users
   
   resources :pages
+  
+  resources :subscriptions
   
   match 'static/:permalink' => 'pages#show'
 

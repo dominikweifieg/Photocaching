@@ -26,6 +26,8 @@ gem 'aws-s3', :require => 'aws/s3'
 gem 'geokit-rails3'
 gem 'mysql2'
 
+gem 'httparty'
+gem 'json'
 
 # Bundle gems for the local environment. Make sure to
 # put test-only gems in this group so their generators

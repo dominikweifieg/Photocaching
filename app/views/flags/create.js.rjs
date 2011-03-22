@@ -1,0 +1,2 @@
+page.replace_html('report_photo', "<p>This photo has been reported!</p>")
+page.visual_effect(':highlight', 'report_photo')
