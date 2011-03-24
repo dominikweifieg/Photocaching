@@ -2,18 +2,50 @@
 <html>
 <head>
 	<title>Photocaching</title>
-	<%= stylesheet_link_tag "lightbox", "photocaching_mobile", :cache => "mobile_main" %>
+	<%= stylesheet_link_tag "lightbox", "mstyle", :cache => "mobile_main" %>
 	<%= javascript_include_tag :defaults %>
 	<%= javascript_include_tag "lightbox" %>
 	<%= javascript_include_tag "builder" %>
 	<%= csrf_meta_tag %>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=0.3">
 </head>
-<body>
-
-		<h1 id="iphotocache">iPhotoCache.com</h1>
-		<h2 id="something">Something new to discover ... everyday!</h2>
-		<%= yield %>
-		<p>&copy; 2011 <%= link_to "Ars Subtilior", "http://www.ars-subtilior.com"%>, Dominik Wei-Fieg</p>
-		<p><%= link_to "Contact", "/static/contact" %></p>
+<body >
+	<div id="container">
+		<div id="main">
+			<span class="title_dark">i</span><span class="title">Photo</span><span class="title_dark">Cache</span>
+			<div id="navbar">
+				<ul>
+					<li>
+						<a href="/" title="Start Here">Start Here</a>
+					</li>
+					<li>
+						<%= link_to "Photos", photos_path(:html)%>
+					</li>
+					<li>
+						<%= link_to "Plays", plays_path %>
+					</li>
+					<li>
+						<%= link_to "Contact", "/static/contact.html" %>
+					</li>
+				</ul>
+			</div>
+			<div id="content">
+				<%= yield(:first_two_columns) %>
+				<div id="third_column">
+					<h1>
+						<span class="red">Get the App</span>
+					</h1>
+					<p>
+						<a href="http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&amp;ls=1"><img class="iphoneapp" src="/images/iphone_small.png"></a> <a href="http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&amp;ls=1">Get the Photocaching app for iPhone and iPad</a>
+					</p>
+				</div><%= yield(:gallery)%>
+			</div>
+			<div id="footer">
+				<div class="left_footer">
+					<%= link_to "Contact", "/static/contact.html" %>&nbsp;| <%= link_to "Terms of&nbsp;Service".html_safe, "/static/tos_web.html" %>&nbsp;| <%= link_to "Privacy&nbsp;Policy".html_safe, "/static/privacy_policy.html" %>&nbsp;| <%= link_to "Terms&nbsp;of&nbsp;Service&nbsp;for&nbsp;Uploading&nbsp;Pictures".html_safe, "/static/tos.html" %>
+				</div>
+		  </div>
+		</div>
+	</div>
 </body>
 </html>
