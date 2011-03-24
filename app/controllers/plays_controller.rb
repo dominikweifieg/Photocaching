@@ -2,7 +2,7 @@ class PlaysController < ApplicationController
       protect_from_forgery :except => [:create, :update]
       before_filter :authenticate, :except => [:index, :show]
       
-      caches_page :index,  :if => Proc.new { |c| c.request.format.html? }
+      caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc
   # GET /plays
   # GET /plays.xml
   def index
@@ -91,7 +91,7 @@ class PlaysController < ApplicationController
   def update
     @play = Play.find(params[:id])
 
-    expire_page plays_path(:format => 'html')
+    expire_action :action => :index
 
     respond_to do |format|
       if @play.update_attributes(params[:play])
@@ -116,6 +116,16 @@ class PlaysController < ApplicationController
       format.html { redirect_to(plays_url) }
       format.xml  { head :ok }
       format.json  { head :ok }
+    end
+  end
+  
+  private
+  
+  def index_cache_path
+    if session["layout"] = "mobile"
+      "m_photos.html"
+    else
+      "photos.html"
     end
   end
 end

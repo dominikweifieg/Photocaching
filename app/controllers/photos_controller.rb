@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   protect_from_forgery :except => :create
   before_filter :authenticate, :except => [:index, :show]
-  caches_page :index,  :if => Proc.new { |c| c.request.format.html? }
+  caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc
   
   # GET /photos
   # GET /photos.xml
@@ -74,7 +74,7 @@ class PhotosController < ApplicationController
     
     respond_to do |format|
       if @photo.save
-        expire_page photos_path(:format => 'html')
+        expire_action :action => :index
         
         id = @photo.id
         
@@ -131,5 +131,13 @@ class PhotosController < ApplicationController
     end
   end 
   
+  private
   
+  def index_cache_path
+    if session["layout"] = "mobile"
+      "m_photos.html"
+    else
+      "photos.html"
+    end
+  end
 end
