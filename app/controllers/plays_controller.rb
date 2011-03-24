@@ -119,13 +119,12 @@ class PlaysController < ApplicationController
     end
   end
   
-  private
-  
+
   def index_cache_path
     if session["layout"] = "mobile"
-      "m_photos.html"
+      "m_plays.html"
     else
-      "photos.html"
+      "plays.html"
     end
   end
 end

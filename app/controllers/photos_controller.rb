@@ -131,8 +131,6 @@ class PhotosController < ApplicationController
     end
   end 
   
-  private
-  
   def index_cache_path
     if session["layout"] = "mobile"
       "m_photos.html"
