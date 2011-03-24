@@ -74,7 +74,7 @@ class PhotosController < ApplicationController
     
     respond_to do |format|
       if @photo.save
-        expire_page :action => :index
+        expire_page photos_path(:format => 'html')
         
         id = @photo.id
         

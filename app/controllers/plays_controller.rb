@@ -1,6 +1,8 @@
 class PlaysController < ApplicationController
       protect_from_forgery :except => [:create, :update]
       before_filter :authenticate, :except => [:index, :show]
+      
+      caches_page :index,  :if => Proc.new { |c| c.request.format.html? }
   # GET /plays
   # GET /plays.xml
   def index
@@ -88,6 +90,8 @@ class PlaysController < ApplicationController
   # PUT /plays/1.xml
   def update
     @play = Play.find(params[:id])
+
+    expire_page plays_path(:format => 'html')
 
     respond_to do |format|
       if @play.update_attributes(params[:play])
