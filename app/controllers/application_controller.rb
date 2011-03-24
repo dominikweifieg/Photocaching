@@ -67,7 +67,7 @@ class ApplicationController < ActionController::Base
   def detect_browser
     agent = request.headers["HTTP_USER_AGENT"].downcase
     MOBILE_BROWSERS.each do |m|
-      session["layout"] = "mobile"
+      session["layout"] = "mobile" if agent.match(m)
       return "mobile_application" if agent.match(m)
     end
     session["layout"] = "foo"

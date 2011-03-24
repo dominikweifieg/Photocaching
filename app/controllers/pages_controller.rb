@@ -91,7 +91,7 @@ class PagesController < ApplicationController
     end
   end
   
-  def index_cache_path
+  def show_cache_path
     if session["layout"] == "mobile"
       "m_static/#{params[:permalink]}.html"
     else
