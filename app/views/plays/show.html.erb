@@ -1,11 +1,32 @@
-<h2><%= @play.photo.title %> played by <%= @play.user.alias %></h2>
+<% content_for :first_two_columns do %>
+<div id="double_column">
+<h1><%= @play.photo.title %> found by <%= @play.user.alias %></h1>
 
-<%= render :partial => @play, :locals => {:details_link => false} %>
+<%= div_for @play.photo do %>
+ <div class="picture" onmouseover="this.className='picture_2'"  onmouseout="this.className='picture'">
+ <div class="image"><%= link_to image_tag(@play.thumb, :alt => @play.photo.title), @play.url, :rel => 'lightbox', :class => 'plain', :title => @play.photo.title%></div>
+ <div class="footer"><%= link_to truncate(@play.photo.title, :length => 20), @play.url, :rel => 'lightbox', :class => 'plain', :title => @play.	photo.title %></div>
+ </div>
+<% end %>
 
-This might be the route <%= @play.user.alias %> took to find the photo:<br/><br/> 
 
-<%= map(@play, @play.photo)%>
-
-<div class="clear back">
-<%= link_to 'Back', plays_path %>
+<div class="show_details">
+	<b><%= link_to @play.user.alias, @play.user %> took <%= distance_of_time_in_words(@play.created_at, @play.end_time) %> to find this photo.</b><br/><br/>
+	She / He started out <%= distance_of_time_in_words_to_now(@play.created_at) %> ago and found the photo <%= distance_of_time_in_words_to_now(@play.created_at) %> ago.	
 </div>
+
+<% if session["layout"] != "mobile" %>
+<div class="map">
+	This might be the route <%= @play.user.alias %> took to find the photo:<br/><br/> 
+
+	<%= map(@play, @play.photo)%>
+</div>
+<% else %>
+<div class="app_link"><%= link_to "Show route on Map", map_link(@play, @play.photo) %></div>
+<% end %>
+
+<div class="back">
+<%= link_to 'Back', photos_path %>
+</div>
+</div>
+<% end %>

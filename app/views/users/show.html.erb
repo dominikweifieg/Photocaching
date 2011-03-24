@@ -1,4 +1,24 @@
-<h2><%= @user.alias %></h2>
-<%= @user.alias %> is using her/his <%= @user.device %> to play photocaching.
-<h3>The newest photos submitted by <%= @user.alias %></h3>
-<%= render :partial => "photos/photo", :collection => @user.photos%>
+<% content_for :first_two_columns do %>
+<div id="double_column">
+<h1><%= @user.alias %></h1>
+<p><%= @user.alias %> is using her/his <%= @user.device %> to play photocaching.</p>
+<p>She/He has been playing photocaching since <%= distance_of_time_in_words_to_now(@user.created_at) %> and has uploaded <b><%= pluralize @upload_count, "Photo" %></b> 
+	and found <b><%= pluralize @play_count, "Locations" %></b>.</p>
+<% unless @user.photos.empty? %>
+<p>The last photo was submitted <%= distance_of_time_in_words_to_now(@user.photos.first.created_at) %> ago.</p>
+<% end %>
+<% unless @user.plays.empty? %>
+<p>The last location was found <%= distance_of_time_in_words_to_now(@user.plays.first.end_time) %> ago.</p>
+<% end %>
+</div>
+<% end %>
+<% content_for :gallery do %>
+<div class="gallery">
+	<b class="red	">Recently Submitted Photos</b>
+	<%= render :partial => "photos/photo", :collection => @user.photos%>
+</div>
+<div class="gallery">
+	<b class="red	">Recently found Locations</b>
+	<%= render :partial => "plays/play", :collection => @user.plays%>
+</div>
+<% end %>

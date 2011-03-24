@@ -1,3 +1,15 @@
-<h2>Latest photos found by users</h2>
-
+<% content_for :first_two_columns do %>
+<div id="first_column">
+<h1>Finished  <span class="red">Plays</span></h1>
+These are the latest photos that where found by users.
+</div>
+<div id="second_column">
+<h1><span class="red">Start</span> playing yourself</h1>
+Get the <a href="http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1">Photocaching</a> app for iPhone and iPad and take to the streets..
+</div>
+<% end %>
+<% content_for :gallery do %>
+<div class="gallery">
 <%= render :partial => :play, :collection => @plays, :locals => {:details_link => true} %>
+</div>
+<% end %>

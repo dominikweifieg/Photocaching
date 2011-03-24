@@ -1,7 +1,17 @@
-<h2>Latest photos</h2>
-<h3>These are the latest photos submitted by users</h3>
-
+<% content_for :first_two_columns do %>
+<div id="first_column">
+<h1>Latest <span class="red">Photos</span></h1>
+These are the latest photos submitted by users. Click on one of the pictures to see details on when and where the picture was taken, and how many users have already found the location.
+</div>
+<div id="second_column">
+<h1>Submit your own <span class="red">Photos</span></h1>
+Get the <a href="http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1">Photocaching</a> app for iPhone and iPad to take your own pictures and submit them for other users to find.
+</div>
+<% end %>
+<% content_for :gallery do %>
+<div class="gallery">
 <%= render :partial => 'photo', :collection => @photos %>
-
+</div>
+<% end %>
 
 

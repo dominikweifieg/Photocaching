@@ -1,38 +1,52 @@
-<h2><%= @photo.title %></h2>
+<% content_for :first_two_columns do %>
+<div id="double_column">
+<h1><%= @photo.title %></h1>
 
-<div class="photo_image">
-	<%= link_to image_tag(@photo.thumb, :alt => @photo.title), @photo.url, :rel => 'lightbox', :class => 'plain', :title => @photo.title%>
-</div>
+<%= div_for @photo do %>
+ <div class="picture" onmouseover="this.className='picture_2'"  onmouseout="this.className='picture'">
+ <div class="image"><%= link_to image_tag(@photo.thumb, :alt => @photo.title), @photo.url, :rel => 'lightbox', :class => 'plain', :title => @photo.title%></div>
+ <div class="footer"><%= link_to truncate(@photo.title, :length => 20), @photo.url, :rel => 'lightbox', :class => 'plain', :title => @photo.title %></div>
+ </div>
+<% end %>
+
 
 <div class="show_details">
-	Submitted by <%= link_to @photo.user.alias, @photo.user %>  <%= distance_of_time_in_words_to_now @photo.created_at %> ago.<br /><br />
+	<b>Submitted by <%= link_to @photo.user.alias, @photo.user %>  <%= distance_of_time_in_words_to_now @photo.created_at %> ago.</b><br /><br />
 
 	<%= pluralize @photo.plays.count, "user has", "users have" %> looked for the location of this photo. <br/><br/>
 	Can you find the location of this photo? Get the <%= link_to "Photocaching App", "http://itunes.apple.com/us/app/photocaching/id418114416?mt=8&ls=1" %> and start out.
 	
+	<div id="report_photo">
+		Mark this photo as inapproriate.
+		<%= form_tag(flags_path, :method => "post", :remote => true)  do %>
+		  <%= hidden_field_tag 'flag[photo_id]', @photo.id %>
+			<%= select_tag("flag[reason]", options_for_select([['Non-existant', 0], ["Non-accessible", 1], ["Person", 2], ["Profanity", 3], ["Nudity", 4]])) %>
+			<%= submit_tag "Report!" %>
+		<% end %>
+	</div>
 
-	<ul class="plays">
-	<%= render :partial => "play", :collection => @photo.plays %>
-	</ul>
 </div>
 
 <% if session["layout"] != "mobile" %>
-<div class="clear map">
+<div class="map">
 	This photo has been taken somewhere around here:<br/><br/>
 	
 	<%= map_photo @photo %>
 </div>
+<% else %>
+<div class="app_link"><%= link_to "Show on Map", map_link(@photo) %></div>
+<div class="app_link"><%= link_to "Open in PhotoCaching App", photo_url(@photo, :host => "app.iphotocache.com", :protocol => "photoloc") %></div>	
+<% end %>
 
-<div class="clear" id="report_photo">
-	Mark this photo as inapproriate.
-	<%= form_tag(flags_path, :method => "post", :remote => true)  do %>
-	  <%= hidden_field_tag 'flag[photo_id]', @photo.id %>
-		<%= select_tag("flag[reason]", options_for_select([['Non-existant', 0], ["Non-accessible", 1], ["Person", 2], ["Profanity", 3], ["Nudity", 4]])) %>
-		<%= submit_tag "Report!" %>
-	<% end %>
+<div class="back">
+<%= link_to 'Back', photos_path %>
+</div>
 </div>
 <% end %>
 
-<div class="clear back">
-<%= link_to 'Back', photos_path %>
+<% content_for :gallery do %>
+<div class="gallery">
+	<b class="red	">Plays</b>
+	<%= render :partial => "play", :collection => @photo.plays %>
 </div>
+<% end %>

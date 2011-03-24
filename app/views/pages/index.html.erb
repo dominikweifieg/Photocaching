@@ -1,4 +1,6 @@
-<h2>Pages</h2>
+<% content_for :first_two_columns do%>
+<div id="double_column">
+<h1>Pages</h1>
 <table>
   <tr>
     <th>Title</th>
@@ -21,3 +23,5 @@
 <br />
 
 <%= link_to 'New page', new_page_path %>
+</div>
+<% end %>

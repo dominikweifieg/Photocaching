@@ -1,3 +1,6 @@
-<% if play.end_time %>
-<li><%= link_to play.user.alias, play %> took <%= distance_of_time_in_words(play.created_at, play.end_time) %> to find this photo.</li>
+<%= div_for play, :class => "photo" do %>
+ <div class="picture" onmouseover="this.className='picture_2'"  onmouseout="this.className='picture'">
+ <div class="image"><%= link_to image_tag(play.thumb), play %></div>
+ <div class="footer"><%= link_to play.user.alias, play %> took <%= distance_of_time_in_words(play.created_at, play.end_time) %> to find this photo.</div>
+</div>
 <% end %>

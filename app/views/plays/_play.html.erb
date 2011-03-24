@@ -1,19 +1,6 @@
-<%= div_for play, :class => "list" do %>
-	<div class="play_photos">
-	<div class="play_original_photo">
-		<%= link_to image_tag(play.photo.thumb, :alt => play.photo.title), play.photo.url, :rel => 'lightbox', :class => 'plain', :title => "#{play.photo.title}: Original" %>
-		<span class="photo_title">Original</span>
-	</div>
-	<div class="play_user_photo">
-		<%= link_to image_tag(play.thumb, :alt => play.photo.title), play.url, :rel => 'lightbox', :class => 'plain', :title => "#{play.photo.title}: Taken by user" %>
-		<span class="photo_title">Taken by user</span>
-	</div>
-	</div>
-	<div class="play_description">
-		<%= link_to play.photo.title, play.photo %> found by <%= link_to play.user.alias, play.user %>  <%= distance_of_time_in_words_to_now play.end_time %> ago.
-		<% if details_link %>
-		<br/><br/>
-		<%= link_to "Details", play %>
-		<% end %>
-	</div>
+<%= div_for play, :class => "photo" do %>
+ <div class="picture" onmouseover="this.className='picture_2'"  onmouseout="this.className='picture'">
+ <div class="image"><%= link_to image_tag(play.thumb), play %></div>
+ <div class="footer"><%= link_to play.user.alias, play %> took <%= distance_of_time_in_words(play.created_at, play.end_time) %> to find this photo.</div>
+</div>
 <% end %>

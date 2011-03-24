@@ -1,4 +1,6 @@
-<h2>Edit page</h2>
+<% content_for :first_two_columns do%>
+<div id="double_column">
+<h1>Edit page</h1>
 
 <% form_for(@page) do |f| %>
   <%= f.error_messages %>
@@ -10,3 +12,5 @@
 
 <%= link_to 'Show', @page %> |
 <%= link_to 'Back', pages_path %>
+</div>
+<% end %>

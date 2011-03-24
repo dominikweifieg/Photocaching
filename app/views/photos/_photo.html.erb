@@ -1,6 +1,6 @@
 <%= div_for photo do %>
-	<div class="photo_image">
-	<h4><%= link_to truncate(photo.title, :length => 20), photo %></h4>
-	<%= link_to image_tag(photo.thumb), photo %>
-	</div>
+ <div class="picture" onmouseover="this.className='picture_2'"  onmouseout="this.className='picture'">
+ <div class="image"><%= link_to image_tag(photo.thumb), photo %></div>
+ <div class="footer"><%= link_to truncate(photo.title, :length => 20), photo %></div>
+</div>
 <% end %>

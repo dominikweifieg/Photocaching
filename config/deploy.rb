@@ -1,4 +1,4 @@
-require "bundler/capistrano"
+#require "bundler/capistrano"
 
 set :application, "photocaching"
 set :repository,  "git@github.com:dominikweifieg/Photocaching.git"
