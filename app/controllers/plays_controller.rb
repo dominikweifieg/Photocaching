@@ -121,7 +121,7 @@ class PlaysController < ApplicationController
   
 
   def index_cache_path
-    if session["layout"] = "mobile"
+    if session["layout"] == "mobile"
       "m_plays.html"
     else
       "plays.html"

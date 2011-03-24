@@ -1,7 +1,7 @@
 class PagesController < ApplicationController
  before_filter :authenticate, :except => :show
  
- caches_page :show	
+ caches_action :show, :cache_path => :show_cache_path.to_proc	
 
 	# GET /pages
   # GET /pages.xml
@@ -88,6 +88,14 @@ class PagesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to(pages_url) }
       format.xml  { head :ok }
+    end
+  end
+  
+  def index_cache_path
+    if session["layout"] == "mobile"
+      "m_static/#{params[:permalink]}.html"
+    else
+      "static/#{params[:permalink]}.html"
     end
   end
 end
