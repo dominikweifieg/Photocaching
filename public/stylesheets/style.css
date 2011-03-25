@@ -290,3 +290,32 @@ a:hover {
 				* html .clearfix {
 					height: 1%;
 				}
+				
+label {
+	font-weight: bold;
+	display: block;
+	float: left;
+	width: 150px;
+	margin-right: 20px;
+	padding-top: 5px;
+}
+
+input, textarea, select {
+	width: 400px;
+	margin-bottom: 10px;
+}
+
+textarea {
+	height: 120px;
+}
+
+input.submit
+{
+	width: 150px;
+	margin-left: 170px;
+}
+
+.error
+{
+	color: #FF0033;
+}

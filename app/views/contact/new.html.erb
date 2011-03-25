@@ -1,0 +1,80 @@
+<%= content_for :first_two_columns do%>
+<div id="double_column">
+<h1>Contact</h1>
+<div id="error_message">
+	<ul id="error_list">
+	</ul>
+</div>
+<%= form_tag('/contact', :id=>"post_form", :onsubmit=>"return check_form()") do %>
+<%= label_tag 'type', "Reason" %>
+<%= select_tag("type", options_for_select([['Information'], ["Problems with the PhotoCaching App"], ["Problems with the iPhotoCache Web Site"], ["Complaint"], ["Other"]])) %><br/>
+<%= label_tag 'subject' %>
+<%= text_field_tag 'subject' %><br/>
+<%= label_tag 'body'%>
+<%= text_area_tag 'body' %><br/>
+<%= label_tag 'sender_name', "Your Name"%>
+<%= text_field_tag 'sender_name'%><br/>
+<%= label_tag 'sender_email', "Your Email-Address"%>
+<%= email_field_tag 'sender_email'%><br/>
+<%= submit_tag 'Send!', :class=>"submit" %>
+<% end %>
+<%= javascript_tag do %>
+function check_form()
+{
+	var filter  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	
+	result = true;
+	message = "";
+	$(error_list).remove();
+	$(error_message).insert({top: new Element('ul', {id: 'error_list'})});
+	if($F(subject).empty())
+	{
+		$(subject).previous('label').addClassName('error');
+		result = false;
+		$(error_list).insert({bottom: "<li>Please enter a subject</li>"});
+	}
+	else
+	{
+		$(subject).previous('label').removeClassName('error');
+	}
+	if($F(body).empty())
+	{
+		$(body).previous('label').addClassName('error');
+		result = false;
+		$(error_list).insert({bottom: "<li>Please enter a message body</li>"});
+	}
+	else
+	{
+		$(body).previous('label').removeClassName('error');
+	}
+	if($F(sender_name).empty())
+	{
+		$(sender_name).previous('label').addClassName('error');
+		result = false;
+		$(error_list).insert({bottom: "<li>Please enter your name</li>"});
+	}
+	else
+	{
+		$(sender_name).previous('label').removeClassName('error');
+	}
+	if($F(sender_email).empty())
+	{
+		$(sender_email).previous('label').addClassName('error');
+		result = false;
+		$(error_list).insert({bottom: "<li>Please enter your email</li>"});
+	}
+	else if(!filter.test($F(sender_email)))
+	{
+		$(sender_email).previous('label').addClassName('error');
+		result = false;
+		$(error_list).insert({bottom: "<li>Please enter a correct email address</li>"});
+	}
+	else
+	{
+		$(sender_email).previous('label').removeClassName('error');
+	}
+	return result;
+}
+<% end %>
+</div>
+<% end %>

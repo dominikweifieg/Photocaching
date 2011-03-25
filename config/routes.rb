@@ -1,4 +1,6 @@
 Photocaching::Application.routes.draw do
+  resources :contact, :only => [:new, :create, :index]
+
   resources :flags
 
   get "subscription/update"
