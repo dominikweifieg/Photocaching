@@ -27,4 +27,5 @@ production:
   username: photocaching
   password: tract255;soiree
   socket: /opt/bitnami/mysql/tmp/mysql.sock
+  host: ec2-46-137-9-5.eu-west-1.compute.amazonaws.com
   timeout: 5000

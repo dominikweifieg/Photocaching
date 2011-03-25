@@ -1,5 +1,5 @@
 class Contact < ActionMailer::Base
-  default :from => "info@mail.iphotocache.com"
+  default :from => "photocaching@ars-subtilior.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
