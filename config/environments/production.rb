@@ -47,4 +47,13 @@ Photocaching::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  ActionMailer::Base.smtp_settings = {
+          :address => "smtp.1und1.de",
+          :domain => "qifood.eu",
+          :user_name => "info@qifood.eu",
+          :password => "test1234",
+          :authentication => :login
+     }
+  
 end
