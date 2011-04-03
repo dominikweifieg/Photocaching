@@ -22,29 +22,29 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def location_for_latitude(lat)
+  def location_for_longitude(lng)
     bucket = "photocaching.test" 
     server = "s3"
 
-    logger.info(lat)
+    logger.info(lng)
 
-    if(lat >= -180.0 && lat < -100.0)
+    if(lng >= -180.0 && lng < -100.0)
       logger.info("us west")
       bucket = "photocaching.us.west"
       server = "s3-us-west-1"
-    elsif(lat >= -100.0 && lat < -30.0)
+    elsif(lng >= -100.0 && lng < -30.0)
       logger.info("us east")
       bucket = "photocaching.us.east"
       server = "s3"
-    elsif(lat >= -30.0 && lat < 60.0)
+    elsif(lng >= -30.0 && lng < 60.0)
       logger.info("eu")
       bucket = "photocaching.eu"
       server = "s3-eu-west-1"
-    elsif(lat >= 60.0 && lat < 120.0)
+    elsif(lng >= 60.0 && lng < 120.0)
       logger.info("asia west")
       bucket = "photocaching.asia"
       server = "s3-ap-southeast-1"
-    elsif(lat >= 120.0 && lat <= 180.0)
+    elsif(lng >= 120.0 && lng <= 180.0)
       logger.info("asia east")
       bucket = "photocaching.asia.east"
       server = "s3-ap-northeast-1"

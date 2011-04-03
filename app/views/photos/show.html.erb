@@ -35,7 +35,7 @@
 </div>
 <% else %>
 <div class="app_link"><%= link_to "Show on Map", map_photo_link(@photo) %></div>
-<div class="app_link"><%= link_to "Open in PhotoCaching App", photo_url(@photo, :host => "app.iphotocache.com", :protocol => "photoloc", :format => "json") %> <small>(This link only works if you have the PhotoCaching App installed).</small></div>
+<div class="app_link"><%= link_to "Open in PhotoCaching App", photo_url(@photo, :host => "app.iphotocache.com", :protocol => "photoloc", :format => "json") %> <small><br/>(This link only works if you have the PhotoCaching App installed).</small></div>
 
 <% end %>
 

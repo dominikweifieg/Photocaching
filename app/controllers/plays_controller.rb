@@ -67,7 +67,7 @@ class PlaysController < ApplicationController
         
         path = "play_%08d" % id
        
-        location = location_for_latitude(@play.lat)
+        location = location_for_longitude(@play.lng)
         
         @play.url = "#{location}/#{path}.jpg"
         @play.thumb = "#{location}/#{path}_thumb.jpg" 

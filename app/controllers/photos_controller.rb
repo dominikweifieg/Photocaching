@@ -80,7 +80,7 @@ class PhotosController < ApplicationController
         
         path = "%08d" % id
        
-        location = location_for_latitude(@photo.lat)
+        location = location_for_longitude(@photo.lng)
         
         @photo.url = "#{location}/#{path}.jpg"
         @photo.thumb = "#{location}/#{path}_thumb.jpg" 
