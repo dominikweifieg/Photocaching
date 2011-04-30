@@ -7,24 +7,20 @@ set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 
 set :use_sudo, false
-#set :deploy_to, "/opt/bitnami/apps/#{application}"
-set :deploy_to, "/var/www/iphotocache"
+set :deploy_to, "/opt/bitnami/apps/#{application}"
 
-#set :user, "bitnami"
-set :user, "deployer"
+set :user, "bitnami"
 
 ssh_options[:forward_agent] = true
 set :branch, "master"
-set :deploy_via, :remote_cache
-set :rake, "/opt/ruby/bin/rake"
+#set :deploy_via, :remote_cache
 
 set :main_server, "ec2-46-137-9-5.eu-west-1.compute.amazonaws.com"
 set :second_server, "ec2-79-125-59-200.eu-west-1.compute.amazonaws.com"
-set :domain, "qifood.eu"
 
-role :web, domain #main_server, second_server                          # Your HTTP server, Apache/etc
-role :app, domain #main_server, second_server                          # This may be the same as your `Web` server
-role :db,  domain, :primary => true #main_server, :primary => true # This is where Rails migrations will run
+role :web, main_server, second_server                          # Your HTTP server, Apache/etc
+role :app, main_server, second_server                          # This may be the same as your `Web` server
+role :db,  main_server, :primary => true # This is where Rails migrations will run
 #role :db,  "your slave db-server here"
 
 # If you are using Passenger mod_rails uncomment this:
