@@ -1,0 +1,315 @@
+#lightbox{	position: absolute;	left: 0; width: 100%; z-index: 100; text-align: center; line-height: 0;}
+#lightbox img{ width: auto; height: auto;}
+#lightbox a img{ border: none; }
+
+#outerImageContainer{ position: relative; background-color: #fff; width: 250px; height: 250px; margin: 0 auto; }
+#imageContainer{ padding: 10px; }
+
+#loading{ position: absolute; top: 40%; left: 0%; height: 25%; width: 100%; text-align: center; line-height: 0; }
+#hoverNav{ position: absolute; top: 0; left: 0; height: 100%; width: 100%; z-index: 10; }
+#imageContainer>#hoverNav{ left: 0;}
+#hoverNav a{ outline: none;}
+
+#prevLink, #nextLink{ width: 49%; height: 100%; background-image: url(data:image/gif;base64,AAAA); /* Trick IE into showing hover */ display: block; }
+#prevLink { left: 0; float: left;}
+#nextLink { right: 0; float: right;}
+#prevLink:hover, #prevLink:visited:hover { background: url(../images/prevlabel.gif) left 15% no-repeat; }
+#nextLink:hover, #nextLink:visited:hover { background: url(../images/nextlabel.gif) right 15% no-repeat; }
+
+#imageDataContainer{ font: 10px Verdana, Helvetica, sans-serif; background-color: #fff; margin: 0 auto; line-height: 1.4em; overflow: auto; width: 100%	; }
+
+#imageData{	padding:0 10px; color: #666; }
+#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
+#imageData #caption{ font-weight: bold;	}
+#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}			
+#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em; outline: none;}	 	
+
+#overlay{ position: absolute; top: 0; left: 0; z-index: 90; width: 100%; height: 500px; background-color: #000; }
+
+
+body {
+	background:url(../images/bckg.jpg) repeat-x #fefefe;
+	margin:0;
+	padding:0;
+	text-align:center;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:13px;
+	color:#525252;
+	}
+	
+.red {
+/*	color:#f73602;*/
+	color:#330099;
+	}
+	
+a {
+/*	color:#f73602;*/
+	color:#330099;
+	text-decoration:none;
+	}
+a:hover {
+	color:#000;
+	text-decoration:none;
+	}
+
+#container {
+	width:100%;
+	}	
+	
+#main{
+	width:95%;
+	margin: 5px;
+	text-align:left;
+	}
+	
+#navbar{
+	font-family:Helvetica, Arial,  sans-serif;
+	font-size:13px;
+	font-weight:bold;
+	text-transform:uppercase;
+	color:#FFFFFF;
+	
+	}
+	#navbar ul{
+		margin:0px;
+		}
+		#navbar ul li{
+			display:inline;
+			background:url(../images/li.gif) no-repeat;
+			background-position:10px 5px;
+			padding:0 5px 0 20px;
+			}
+			#navbar ul li a{
+				color:#FFFFFF;
+				text-decoration:none;
+				}
+				#navbar ul li a:hover{
+					color:#FFFFFF;
+/*					border-bottom:2px solid #f84b1d;*/
+					border-bottom:2px solid #330099;
+					}
+						
+	
+#header{
+	height:222px;
+	background:url(../images/head_bckg.jpg) repeat-x #fff;
+	min-width:780px;
+	}
+	
+.title {
+	font-family:Helvetica, Arial,  sans-serif;
+	/*color:#f73602;*/
+	color:#330099;
+	font-size:24px;
+	}
+	.title_dark {
+		font-family:Helvetica, Arial,  sans-serif;
+		color:#535353;
+		font-size:24px;
+		}
+	
+#left_bar_header {
+	float:left;
+	width:40%;
+	height:160px;
+	padding:55px 0 0 50px;
+	}
+	#left_bar_header p{
+		font-family: Arial, Helvetica, sans-serif;
+		color:#a2a2a2;
+		font-size:11px;
+		width:300px;
+		
+		}
+		
+#right_bar_header {
+	float:right;
+	width:50%;
+	height:222px;
+	text-align:right;
+	}
+
+#content{
+	width:100%;
+	background-color:#FFFFFF;
+	padding:0;
+	float:left;
+
+	}
+	#content h1{
+		font-family:Helvetica, Arial,  sans-serif;
+		color:#535353;
+		font-size:20px;
+		font-weight:normal;
+		padding-left:15px;
+/*		border-left:3px solid #f73602;*/
+		border-left:3px solid #330099;
+		}
+		
+#first_column {
+	float:left;
+	padding:0 20px 0 10px;
+	margin-right:1%;
+	margin-left:1%;
+	}
+
+#second_column {
+	float:left;
+	padding:0 20px 0 10px;
+	margin-right:1%;
+	margin-left:1%;
+	}
+
+#third_column {
+	float:left;
+	padding:0 20px 0 10px;	
+	margin-right:1%;
+	margin-left:1%;
+	}
+	
+#double_column {
+	float:left;
+	padding:0 20px 0 10px;
+	margin-right:1%;
+	margin-left:1%;
+	}
+
+.show_details
+{
+	clear: both;
+	padding-top: 10px;
+}
+	
+.iphoneapp {
+	float: left;
+	padding-right: 10px;
+}
+
+.back
+{
+	padding-top: 10px;
+}
+	
+#report_photo
+{
+	padding-top: 10px;
+}	
+	
+.gallery{
+  width:95%;
+  background-color:#fff; 
+  padding: 10px; 
+  float:left;
+  text-align:center;
+}
+
+.photo {
+	text-align: center; 
+	width:100%;
+}
+
+.picture {
+  float:left;
+  margin: 5px; 
+  width:156px; 
+  border:solid 1px #D1D1D1;
+  background-color:#f2f2f2; 
+}
+
+.picture_2{
+  float: left; 
+  margin: 5px; 
+  width:156px; 
+  text-align:center; 
+ /* border:solid 1px #F73602;*/
+  border:solid 1px #330099;
+  background-color:#f2f2f2; 
+}
+
+.picture .image {
+  width:150px; 
+  height:150px; 
+  margin:3px;
+}
+
+.picture_2 .image {
+  width:150px; 
+  height:150px; 
+  margin:3px;
+}
+.gallery .footer {
+  text-align:center;
+  width: 156px; 
+  border-top:solid 1px #D1D1D1; 
+/*  color:#F73602; */
+	color:#330099;
+  font-weight:normal; 
+  padding-top: 7px; 
+  padding-bottom:7px; 
+  margin-top: 10px;
+}
+
+.map
+{
+	clear: both;
+	padding-top: 10px;
+}
+	
+.app_link a
+{
+	background-color: #330099;
+	padding: 10px 20px 10px 20px;
+	color: #FFFFFF;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	-khtml-border-radius: 10px;
+}
+
+.app_link {
+	margin-bottom: 30px;
+	margin-top: 20px;
+}	
+	
+#footer{
+	width:100%;
+	float:left;	
+	padding:10px 0 10px 0;
+	border-top:10px solid #F3F3F3;
+	}
+	#footer a {
+		color:#525252;
+		text-decoration:none;
+		}
+		#footer a:hover {
+			/*color:#f73602;*/
+			color:#330099;
+			text-decoration:none;
+			}
+			#footer .left_footer{
+				width:100%;
+				}
+				#footer .right_footer{
+				width:42%;
+				padding-left:30px;
+				}
+				
+				.clearfix:after {
+					content: ".";
+					display: block;
+					clear: both;
+					visibility: hidden;
+					line-height: 0;
+					height: 0;
+				}
+
+				.clearfix {
+					display: inline-block;
+				}
+
+				html[xmlns] .clearfix {
+					display: block;
+				}
+
+				* html .clearfix {
+					height: 1%;
+				}

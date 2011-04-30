@@ -18,8 +18,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_identifier(params[:id])
     
-    @upload_count = Photo.where(:user_id => @user.id).count
-    @play_count = Play.where(:user_id => @user.id).count
+    
+    @upload_count = @user.photos.size #Photo.where(:user_id => @user.id).count
+    @play_count = @user.plays.size #Play.where(:user_id => @user.id).count
     
     respond_to do |format|
       format.html # show.html.erb
