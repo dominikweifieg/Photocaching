@@ -2,7 +2,7 @@ class PlaysController < ApplicationController
       protect_from_forgery :except => [:create, :update]
       before_filter :authenticate, :except => [:index, :show]
       
-      caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc
+      caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc, :expires_in => 5.minutes
   # GET /plays
   # GET /plays.xml
   def index
@@ -90,8 +90,6 @@ class PlaysController < ApplicationController
   # PUT /plays/1.xml
   def update
     @play = Play.find(params[:id])
-
-    expire_action :action => :index
 
     respond_to do |format|
       if @play.update_attributes(params[:play])

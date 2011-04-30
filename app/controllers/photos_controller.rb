@@ -1,7 +1,7 @@
 class PhotosController < ApplicationController
   protect_from_forgery :except => :create
   before_filter :authenticate, :except => [:index, :show]
-  caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc
+  caches_action :index,  :if => Proc.new { |c| c.request.format.html? }, :cache_path => :index_cache_path.to_proc, :expires_in => 5.minutes
   
   # GET /photos
   # GET /photos.xml
