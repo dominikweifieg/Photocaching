@@ -56,6 +56,7 @@ class PlaysController < ApplicationController
     @play = Play.new(params[:play])
     
     user = User.find_by_identifier(params[:user][:identifier])
+    user ||= User.find_by_identifier("ANONYMOUS@photocaching")
     photo = Photo.find(params[:photo][:id]);
     @play.user = user
     @play.photo = photo

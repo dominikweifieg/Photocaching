@@ -71,6 +71,7 @@ class PhotosController < ApplicationController
     
     @photo = Photo.new(params[:photo])
     @photo.user = user;
+    @photo.title = "Untitled" if @photo.title == nil || @photo.title == ""
     
     respond_to do |format|
       if @photo.save
