@@ -16,11 +16,16 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = User.find_by_identifier(params[:id])
+    case request.format
+       when  Mime::JSON
+        @user = User.find_by_device(params[:id])
+       else
+        @user = User.find_by_identifier(params[:id])
     
     
-    @upload_count = @user.photos.size #Photo.where(:user_id => @user.id).count
-    @play_count = @user.plays.size #Play.where(:user_id => @user.id).count
+        @upload_count = @user.photos.size #Photo.where(:user_id => @user.id).count
+        @play_count = @user.plays.size #Play.where(:user_id => @user.id).count
+      end
     
     respond_to do |format|
       format.html # show.html.erb
@@ -56,7 +61,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     
-    @user.subscription_expires = 1.month.from_now
+    @user.subscription_expires = 2.days.from_now
 
     respond_to do |format|
       if @user.save

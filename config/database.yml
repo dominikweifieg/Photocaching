@@ -5,7 +5,7 @@ development:
   encoding: utf8 
   database: photocaching_development
   pool: 5
-  username: photocaching
+  username: dominik
   password: test1234
   socket: /tmp/mysql.sock
   timeout: 5000

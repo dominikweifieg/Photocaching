@@ -3,4 +3,6 @@ class Photo < ActiveRecord::Base
   belongs_to :user
   has_many :plays, :conditions => "end_time IS NOT NULL", :order => "end_time DESC"
   has_many :flags
+  
+  default_scope :conditions => {:verified => true}
 end

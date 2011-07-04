@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.4'
+gem 'rails', '3.0.9'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -25,8 +25,9 @@ gem 'capistrano'
 # gem 'sqlite3-ruby', :require => 'sqlite3'
 gem 'aws-s3', :require => 'aws/s3'
 
-gem 'geokit-rails3'
 gem 'mysql2'
+gem 'geokit-rails3'
+
 
 gem 'httparty'
 gem 'json', '1.2.4'

@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20110321082401) do
     t.float    "lng"
     t.string   "license"
     t.string   "title"
+    t.string   "description"
     t.boolean  "verified"
     t.integer  "inappropriate_count"
     t.datetime "created_at"
@@ -48,12 +49,15 @@ ActiveRecord::Schema.define(:version => 20110321082401) do
     t.integer  "radius"
     t.float    "lat"
     t.float    "lng"
+    t.string   "url"
     t.datetime "end_time"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "thumb"
-    t.text     "url"
   end
+
+  add_index "plays", ["photo_id"], :name => "index_plays_on_photo_id"
+  add_index "plays", ["user_id"], :name => "index_plays_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "alias"
@@ -69,5 +73,7 @@ ActiveRecord::Schema.define(:version => 20110321082401) do
     t.text     "latest_receipt"
     t.string   "product_id"
   end
+
+  add_index "users", ["identifier"], :name => "index_users_on_identifier"
 
 end

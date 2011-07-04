@@ -4,6 +4,6 @@ module PhotosHelper
   end
   
   def map_photo_link(loc)
-    "maps://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=#{number_with_precision(loc.lat, :precision=>3)}+#{number_with_precision(loc.lng, :precision=>3)}&amp;aq=&amp;sll=#{number_with_precision(loc.lat, :precision=>3)},#{number_with_precision(loc.lng, :precision=>3)}&amp;sspn=0.005356,0.011094&amp;dirflg=w&amp;ie=UTF8&amp;t=h&amp;z=14&amp;ll=#{number_with_precision(loc.lat, :precision=>3)},#{number_with_precision(loc.lng, :precision=>3)}"
+    "maps://maps.google.com/maps?ll=#{number_with_precision(loc.lat, :precision=>3)},#{number_with_precision(loc.lng, :precision=>3)}&z=17"
   end
 end
