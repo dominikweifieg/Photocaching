@@ -16,7 +16,8 @@ set :branch, "master"
 #set :deploy_via, :remote_cache
 
 set :main_server, "ec2-46-137-9-5.eu-west-1.compute.amazonaws.com"
-set :second_server, "ec2-79-125-59-200.eu-west-1.compute.amazonaws.com"
+set :second_server, "ec2-46-51-141-178.eu-west-1.compute.amazonaws.com"
+
 
 role :web, main_server, second_server                          # Your HTTP server, Apache/etc
 role :app, main_server, second_server                          # This may be the same as your `Web` server
