@@ -13,12 +13,12 @@ class PhotosController < ApplicationController
       @ne = GeoKit::LatLng.new(params[:nelat].to_f,params[:nelng].to_f)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
       #@photos = Photo.in_bounds(:bounds => [@sw, @ne], :origin => @origin)
-      @photos = Photo.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc, created_at desc").limit(limit)
+      @photos = Photo.verified.geo_scope(:bounds => [@sw, @ne], :origin => @origin).order("distance asc, created_at desc").limit(limit)
     elsif(params[:within].present?)
       @origin = GeoKit::LatLng.new(params[:clat].to_f, params[:clng].to_f);
-      @photos = Photo.within(params[:within].to_f, :origin => @origin).order("distance asc, created_at desc").limit(limit)
+      @photos = Photo.verified.within(params[:within].to_f, :origin => @origin).order("distance asc, created_at desc").limit(limit)
     else
-      @photos = Photo.includes(:user).order("created_at desc").limit(24)
+      @photos = Photo.verified.includes(:user).order("created_at desc").limit(24)
     end
 
     respond_to do |format|
@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo = Photo.find(params[:id])
+    @photo = Photo.verified.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -70,8 +70,9 @@ class PhotosController < ApplicationController
     user ||= User.find_by_identifier("ANONYMOUS@photocaching")
     
     @photo = Photo.new(params[:photo])
-    @photo.user = user;
+    @photo.user = user
     @photo.title = "Untitled" if @photo.title == nil || @photo.title == ""
+    @photo.verified = false
     
     respond_to do |format|
       if @photo.save

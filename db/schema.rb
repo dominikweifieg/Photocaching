@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321082401) do
+ActiveRecord::Schema.define(:version => 20110712085052) do
 
   create_table "flags", :force => true do |t|
     t.integer  "reason"
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(:version => 20110321082401) do
     t.string   "license"
     t.string   "title"
     t.string   "description"
-    t.boolean  "verified"
+    t.boolean  "verified",            :default => false
     t.integer  "inappropriate_count"
     t.datetime "created_at"
     t.datetime "updated_at"

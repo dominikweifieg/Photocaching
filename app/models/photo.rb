@@ -4,5 +4,5 @@ class Photo < ActiveRecord::Base
   has_many :plays, :conditions => "end_time IS NOT NULL", :order => "end_time DESC"
   has_many :flags
   
-  default_scope :conditions => {:verified => true}
+  scope :verified, where(:verified => true)
 end
