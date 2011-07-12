@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo = Photo.verified.find(params[:id])
+    @photo = Photo.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
